@@ -369,54 +369,6 @@ footer.foot{margin-top:28px;color:var(--subtle);font-size:11.5px;text-align:cent
   .records .num,.records .acts{text-align:left}
 }
 
-/* ---------- Informe imprimible ---------- */
-@media print{
-  @page{size:A4 portrait;margin:14mm 13mm 14mm}
-  @page landscape{size:A4 landscape;margin:11mm 11mm 12mm}
-  html,body{background:#fff!important}
-  body>*:not(#printReport){display:none!important}
-  #printReport{display:block!important;font-size:10.5px;color:#1b1f24;line-height:1.4}
-  #printReport *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .pr-page{break-before:page}
-  .pr-landscape{page:landscape}
-  .pr-cover{height:250mm;display:flex;flex-direction:column;justify-content:space-between;border-top:6px solid var(--red);padding-top:14mm}
-  .pr-cover img{width:95mm}
-  .pr-cover h1{font-size:28px;color:var(--red);line-height:1.15;margin:0 0 8px;max-width:150mm}
-  .pr-cover .pr-sub{font-size:14px;color:#3d4450}
-  .pr-meta{border-top:1px solid var(--line);padding-top:8px;font-size:11px;color:#3d4450;display:grid;gap:3px}
-  .pr-head{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--red);padding-bottom:5px;margin-bottom:10px;font-size:9px;color:#646b75}
-  .pr-head img{height:9mm}
-  #printReport h1.pr-h1{font-size:18px;color:var(--red);margin:0 0 4px;break-after:avoid}
-  #printReport h2.pr-h2{font-size:13px;margin:12px 0 6px;break-after:avoid;color:#1b1f24}
-  .pr-intro{color:#3d4450;margin:0 0 10px;font-size:10.5px}
-  .pr-toc{font-size:13px;line-height:2;padding-left:18px}
-  .pr-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-  .pr-kpi{border:1px solid var(--line);border-top:2.5px solid var(--red);border-radius:5px;padding:6px 8px;break-inside:avoid}
-  .pr-kpi.result{border-top-color:var(--blue)}
-  .pr-kpi.calc{border-top-color:var(--slate)}
-  .pr-kpi{display:flex;flex-direction:column}
-  .pr-kpi .n{font-size:9.5px;color:#3d4450;min-height:2.7em}
-  .pr-kpi .v{font-size:17px;font-weight:700}
-  .pr-kpi .v small{font-size:9px;color:#646b75;font-weight:600;margin-left:3px}
-  .pr-kpi .r{font-size:8.5px;color:#8a919b}
-  .pr-charts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .pr-chart{border:1px solid var(--line);border-radius:5px;padding:6px 8px;break-inside:avoid}
-  .pr-chart h3{font-size:10.5px;margin:0 0 4px}
-  .pr-chart img{width:100%;display:block}
-  .pr-chart.full{grid-column:1/-1}
-  .pr-table{width:100%;border-collapse:collapse;font-size:9px}
-  .pr-table th{background:#f2f3f5;text-align:left;padding:4px 5px;border-bottom:1px solid #cfd4da;font-size:8.5px}
-  .pr-table td{padding:3.5px 5px;border-bottom:1px solid #e6e9ec;vertical-align:top}
-  .pr-table .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
-  .pr-table thead{display:table-header-group}
-  .pr-table tr{break-inside:avoid}
-  .pr-table tr.lv-eje td{background:#fbf2f4;font-weight:700}
-  .pr-table tr.lv-amb td{background:#fdf9fa;font-weight:600}
-  .pr-table .i1{padding-left:12px}.pr-table .i2{padding-left:22px}.pr-table .i3{padding-left:32px;color:#3d4450}
-  .pr-table .code{font-family:inherit;font-size:inherit;color:#3d4450;font-weight:600}
-  .pr-note{font-size:8.5px;color:#646b75;margin-top:6px}
-  .tag{font-size:8.5px;padding:1px 6px}
-}
 
 @media (max-width:480px){.kpi-grid{grid-template-columns:1fr}}
 
@@ -434,48 +386,28 @@ footer.foot{margin-top:28px;color:var(--subtle);font-size:11.5px;text-align:cent
         <div class="subtitle">Seguimiento de la ejecución del II PICD · 2026–2030</div>
       </div>
     </div>
-    <div class="actions">
-      <input id="fileInput" type="file" accept=".json,application/json" hidden>
-      <button class="btn" id="btnLoad" type="button" data-tip="Recupera los registros desde una copia JSON descargada anteriormente. Sustituye a los datos actuales.">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>Cargar copia</button>
-      <button class="btn" id="btnExport" type="button" data-tip="Descarga todos los registros en un archivo JSON. Guárdalo como copia de seguridad o para enviarlo.">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>Descargar copia</button>
-      <button class="btn primary" id="btnPrint" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Generar informe PDF</button>
-    </div>
   </header>
 
   <div class="statusbar" id="statusbar" aria-live="polite"></div>
-  <div id="storageBanner" class="banner" hidden></div>
 
   <nav class="tabs" role="tablist" aria-label="Secciones del cuadro" id="tabs">
-    <button class="tab" role="tab" data-tab="captura" id="tab-btn-captura">Captura de datos</button>
     <button class="tab" role="tab" data-tab="general" id="tab-btn-general">Visión general</button>
     <button class="tab" role="tab" data-tab="detalle" id="tab-btn-detalle">Visión detallada</button>
     <button class="tab" role="tab" data-tab="evolucion" id="tab-btn-evolucion">Evolución</button>
-    <button class="tab" role="tab" data-tab="calidad" id="tab-btn-calidad">Calidad del dato <span class="count" id="qualityCount" hidden></span></button>
-    <button class="tab" role="tab" data-tab="catalogo" id="tab-btn-catalogo">Catálogo</button>
   </nav>
 
   <section class="filters" id="filters" aria-label="Filtros" hidden></section>
 
   <main>
-    <section class="tab-panel" role="tabpanel" id="panel-captura" aria-labelledby="tab-btn-captura"></section>
-    <section class="tab-panel" role="tabpanel" id="panel-general" aria-labelledby="tab-btn-general" hidden></section>
+    <section class="tab-panel" role="tabpanel" id="panel-general" aria-labelledby="tab-btn-general"></section>
     <section class="tab-panel" role="tabpanel" id="panel-detalle" aria-labelledby="tab-btn-detalle" hidden></section>
     <section class="tab-panel" role="tabpanel" id="panel-evolucion" aria-labelledby="tab-btn-evolucion" hidden></section>
-    <section class="tab-panel" role="tabpanel" id="panel-calidad" aria-labelledby="tab-btn-calidad" hidden></section>
-    <section class="tab-panel" role="tabpanel" id="panel-catalogo" aria-labelledby="tab-btn-catalogo" hidden></section>
   </main>
 
-  <footer class="foot">II PICD Navarra · Cuadro de mando autocontenido · Los datos se guardan únicamente en este navegador; descarga copias periódicas.</footer>
+  <footer class="foot">II PICD Navarra · Cuadro de mando de seguimiento · Versión de consulta pública</footer>
 </div>
 
-<div class="toast-zone" id="toasts" aria-live="polite"></div>
 <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
-<div class="drop-overlay" id="dropOverlay" hidden><div>Suelta aquí la copia JSON para cargarla</div></div>
-<div class="offscreen" id="offscreen" aria-hidden="true"></div>
-<div id="printReport"></div>
 
 <script>
 /**
@@ -564,10 +496,6 @@ window.PICD_CATALOG = {
    ===================================================================== */
 
 const CAT = window.PICD_CATALOG;
-/* La clave de almacenamiento se mantiene entre versiones para conservar los datos guardados en el navegador. */
-const STORAGE_KEY = 'ii-picd-cuadro-v28';
-const LEGACY_KEYS = ['ii-picd-cuadro-v18'];
-const SCHEMA = 'II-PICD-dashboard';
 const VERSION = 30;
 const FIELDS = ['Cod_Eje','Eje','Cod_Ámbito','Ámbito','Cod_Actuación','Actuación','Cod_Subactuación','Subactuación','Responsable','Tipo_Intervención','Año','Periodo','Estado_Subactuación','Cod_Indicador','Indicador','Tipo_Indicador','Unidad','Valor','Territorio','Localidad','Sexo','Grupo_Edad','Colectivo','Modalidad','Área_Formativa','Nivel_Competencia','Observaciones'];
 const DIMS = CAT.dimensions;
@@ -597,14 +525,7 @@ const FILTER_DEFS = [
 const STRUCT_KEYS = ['Cod_Eje','Cod_Ámbito','Cod_Actuación','Cod_Subactuación'];
 
 const ICON = {
-  edit:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>',
-  trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>',
-  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>',
-  warn:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>',
   filter:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>',
-  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>',
-  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
-  save:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>'
 };
 
 /* ---------------------------- Utilidades ---------------------------- */
@@ -626,8 +547,6 @@ function fmt(v, dec = 0){
 const fmtPct = v => v === null || !Number.isFinite(v) ? '—' : fmt(v * 100, 1) + ' %';
 const pad = n => String(n).padStart(2, '0');
 const fmtDate = d => d ? `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}` : '';
-const fmtDateTime = d => d ? `${fmtDate(d)} ${pad(d.getHours())}:${pad(d.getMinutes())}` : '';
-const stamp = (d = new Date()) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}_${pad(d.getHours())}${pad(d.getMinutes())}`;
 function sortCode(a, b){
   const A = String(a).split('.'), B = String(b).split('.');
   for (let i = 0; i < Math.max(A.length, B.length); i++){
@@ -664,31 +583,23 @@ const isNone = (key, v) => v === DIM[key].none;
 const ruleText = i => i.aggregation === 'Último valor'
   ? 'Último dato disponible de cada subactuación y desglose (dato acumulado; no se suman periodos)'
   : 'Suma de todos los registros';
-const recKey = r => [r.Cod_Indicador, r.Cod_Subactuación, r.Año, r.Periodo, ...DIMS.map(d => r[d.key])].join('|');
-const baseKey = r => [r.Cod_Indicador, r.Cod_Subactuación, r.Año, r.Periodo].join('|');
 /* Serie de un indicador acumulado: subactuación y combinación de desglose (sin periodo). */
 const stockKey = r => [r.Cod_Indicador, r.Cod_Subactuación, ...DIMS.map(d => r[d.key])].join('|');
-/* Dimensiones por las que está desglosado un registro (las que no tienen el valor «sin desglose»).
-   El colectivo es obligatorio en todos los registros, así que no cuenta como desglose. */
-const breakdownScheme = r => DIMS.filter(d => d.key !== 'Colectivo' && r[d.key] !== d.none).map(d => d.label.toLowerCase()).join(', ') || 'sin desglose';
 
 /* ------------------------------ Estado ------------------------------ */
 const emptyExt = () => ({subs: [], Localidad: [], Colectivo: [], Responsable: []});
 const state = {
   records: [],
   ext: emptyExt(),
-  meta: {savedAt: null, backupAt: null, pendingChanges: 0, source: '', importNotes: []},
-  storageOk: true,
+  meta: {dataDate: null, loadError: ''},
   ui: {
-    tab: 'captura', filters: {}, openFilter: null, filterSearch: '', moreFilters: false,
-    expanded: new Set(), onlyWithData: false, detailCode: null, evoCode: null,
-    editingId: null, dirty: false, guideOpen: null,
-    rec: {search: '', ind: '', year: '', sort: 'plan', page: 1, size: 25}
+    tab: 'general', filters: {}, openFilter: null, filterSearch: '', moreFilters: false,
+    expanded: new Set(), onlyWithData: false, detailCode: null, evoCode: null
   },
   charts: {}
 };
 FILTER_DEFS.forEach(f => state.ui.filters[f.key] = []);
-let subCache = null, qualityCache = null;
+let subCache = null;
 
 /* ----------------------------- Catálogo ----------------------------- */
 function subsMap(){
@@ -834,91 +745,7 @@ function nodeStatus(rows, node){
 }
 const tag = s => `<span class="tag ${esc(String(s).replace(/\s/g, '-'))}">${esc(s)}</span>`;
 
-/* ---------------------------- Persistencia ---------------------------- */
-const stripRec = r => { const o = {}; FIELDS.forEach(k => o[k] = r[k]); return o; };
-function persist(){
-  const payload = {schema: SCHEMA, version: VERSION, savedAt: new Date().toISOString(), records: state.records.map(stripRec), ext: state.ext,
-    meta: {backupAt: state.meta.backupAt, pendingChanges: state.meta.pendingChanges, source: state.meta.source, importNotes: state.meta.importNotes.slice(0, 300)}};
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(payload)); state.meta.savedAt = new Date(); state.storageOk = true; }
-  catch (e) { state.storageOk = false; }
-}
-function loadStored(){
-  let raw = null;
-  try { raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch (e) { raw = null; }
-  if (raw && Array.isArray(raw.records)){
-    const res = processRows(raw.records, raw.ext);
-    state.records = res.records; state.ext = res.ext;
-    const m = raw.meta || {};
-    state.meta.backupAt = m.backupAt || null; state.meta.pendingChanges = Number(m.pendingChanges) || 0;
-    state.meta.source = m.source || ''; state.meta.importNotes = Array.isArray(m.importNotes) ? m.importNotes : [];
-    state.meta.savedAt = raw.savedAt ? new Date(raw.savedAt) : null;
-    if (res.invalid.length) setTimeout(() => toast(`${res.invalid.length} registros guardados no superan la validación y no se han cargado.`, 'warn', 9000), 400);
-    return;
-  }
-  for (const key of LEGACY_KEYS){
-    let old = null;
-    try { old = JSON.parse(localStorage.getItem(key) || 'null'); } catch (e) { old = null; }
-    if (Array.isArray(old) && old.length){
-      const res = processRows(old, null);
-      state.records = res.records; state.ext = res.ext;
-      state.meta.source = 'Versión anterior del cuadro'; state.meta.pendingChanges = res.records.length;
-      state.meta.importNotes = res.notes.slice(0, 300);
-      persist();
-      setTimeout(() => toast(`Se han recuperado ${res.records.length} registros guardados por la versión anterior${res.invalid.length ? ` (${res.invalid.length} descartados por errores)` : ''}. Descarga una copia para conservarlos.`, 'ok', 10000), 400);
-      return;
-    }
-  }
-}
-function testStorage(){ try { const k = '__picd_test__'; localStorage.setItem(k, '1'); localStorage.removeItem(k); return true; } catch (e) { return false; } }
-/* Punto único tras cualquier cambio de datos. */
-function commit(changes){
-  state.meta.pendingChanges += changes;
-  subCache = null; qualityCache = null;
-  pruneFilters();
-  persist();
-  renderChrome(); renderFilters(); renderActive();
-}
-function download(blob, name){
-  const url = URL.createObjectURL(blob), a = document.createElement('a');
-  a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
-}
-function exportJson(prefix){
-  if (!state.records.length && !prefix){ toast('No hay registros que descargar.', 'warn'); return false; }
-  const now = new Date();
-  const payload = {schema: SCHEMA, version: VERSION, exportedAt: now.toISOString(), catalogVersion: CAT.version, totalRecords: state.records.length,
-    data: state.records.map(stripRec), extensions: state.ext,
-    catalog: {indicators: CAT.indicators, actions: CAT.actions}};
-  download(new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json;charset=utf-8'}), `${prefix || 'II_PICD_copia'}_${stamp(now)}.json`);
-  state.meta.backupAt = now.toISOString(); state.meta.pendingChanges = 0;
-  persist(); renderChrome();
-  if (!prefix) toast(`Copia descargada con ${plural(state.records.length, 'registro')}. Guárdala en una carpeta segura.`, 'ok');
-  return true;
-}
-
-/* -------------------------- Avisos y ventanas -------------------------- */
-function toast(msg, kind = 'ok', ms = 5000){
-  const el = document.createElement('div'); el.className = `toast ${kind}`; el.setAttribute('role', kind === 'err' ? 'alert' : 'status'); el.textContent = msg;
-  $('#toasts').appendChild(el); setTimeout(() => el.remove(), ms);
-}
-function modal({title, body, icon = 'info', actions, wide = false}){
-  return new Promise(resolve => {
-    const back = document.createElement('div'); back.className = 'modal-back';
-    const ic = icon === 'danger' ? ICON.trash : icon === 'warn' ? ICON.warn : ICON.info;
-    back.innerHTML = `<div class="modal ${wide ? 'wide' : ''}" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><div class="modal-icon ${icon}">${ic}</div><h2 id="modalTitle">${esc(title)}</h2></div><div class="modal-body">${body}</div><div class="modal-foot">${actions.map((a, i) => `<button type="button" class="btn ${a.kind || ''}" data-i="${i}">${esc(a.label)}</button>`).join('')}</div></div>`;
-    const prev = document.activeElement;
-    const cancelValue = (actions.find(a => a.cancel) || {value: null}).value;
-    const close = v => { back.remove(); document.removeEventListener('keydown', onKey, true); if (prev && prev.focus) prev.focus(); resolve(v); };
-    const onKey = e => {
-      if (e.key === 'Escape'){ e.preventDefault(); close(cancelValue); }
-      if (e.key === 'Tab'){ const f = $$('button,input,select,textarea,a[href]', back); const i = f.indexOf(document.activeElement); if (e.shiftKey && i <= 0){ e.preventDefault(); f[f.length - 1].focus(); } else if (!e.shiftKey && i === f.length - 1){ e.preventDefault(); f[0].focus(); } }
-    };
-    back.addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (b) close(actions[+b.dataset.i].value); else if (e.target === back) close(cancelValue); });
-    document.addEventListener('keydown', onKey, true);
-    document.body.appendChild(back);
-    (back.querySelector('.btn.primary, .btn.danger-solid') || back.querySelector('.btn')).focus();
-  });
-}
+/* ------------------------------ Ayudas ------------------------------ */
 function initTooltips(){
   const tip = $('#tooltip'); let current = null;
   const show = el => {
@@ -938,21 +765,8 @@ const infoBtn = text => `<button type="button" class="info-btn" data-tip="${esc(
 
 /* ------------------------- Barra de estado ------------------------- */
 function renderChrome(){
-  const n = state.records.length, m = state.meta;
-  let backup;
-  if (!n) backup = `<span class="pill"><span class="dot"></span>Sin registros todavía</span>`;
-  else if (m.pendingChanges > 0) backup = `<button type="button" class="pill warn" id="pillBackup" data-tip="Los datos están guardados en este navegador, pero no en un archivo. Descarga una copia para no perderlos si se borra el navegador o cambias de equipo."><span class="dot"></span><strong>${plural(m.pendingChanges, 'cambio')} sin copia de seguridad</strong> · Descargar ahora</button>`;
-  else backup = `<span class="pill ok"><span class="dot"></span>Copia de seguridad al día${m.backupAt ? ` · ${fmtDateTime(new Date(m.backupAt))}` : ''}</span>`;
-  const saved = state.storageOk
-    ? `<span class="pill ok" data-tip="Cada cambio se guarda automáticamente en este navegador."><span class="dot"></span>Guardado automático${m.savedAt ? ` · ${fmtDateTime(m.savedAt)}` : ''}</span>`
-    : `<span class="pill danger"><span class="dot"></span>No se puede guardar en este navegador</span>`;
-  $('#statusbar').innerHTML = `<span class="pill">Registros <strong class="tabular">${fmt(n)}</strong></span>${saved}${backup}${m.source ? `<span class="pill" data-tip="Origen de los datos cargados">Origen: <strong>${esc(m.source)}</strong></span>` : ''}<span class="hint">Puedes arrastrar una copia JSON sobre la página para cargarla.</span>`;
-  const b = $('#storageBanner');
-  b.hidden = state.storageOk;
-  if (!state.storageOk) b.innerHTML = `<span><strong>Atención:</strong> este navegador no permite guardar los datos (modo privado o almacenamiento lleno). Los cambios se perderán al cerrar la página.</span><button class="btn sm danger" type="button" id="bannerExport">Descargar copia ahora</button>`;
-  const q = quality(), c = $('#qualityCount'), errs = q.filter(i => i.sev === 'err').length, warns = q.filter(i => i.sev === 'warn').length;
-  c.hidden = !(errs + warns); c.textContent = errs + warns; c.className = 'count ' + (errs ? 'err' : 'warn');
-  c.setAttribute('aria-label', `${errs} errores y ${warns} advertencias`);
+  const m = state.meta;
+  $('#statusbar').innerHTML = `<span class="pill">Registros <strong class="tabular">${fmt(state.records.length)}</strong></span>${m.dataDate && !isNaN(m.dataDate) ? `<span class="pill">Datos actualizados a <strong>${fmtDate(m.dataDate)}</strong></span>` : ''}`;
 }
 
 /* ------------------------------ Pestañas ------------------------------ */
@@ -968,12 +782,9 @@ function activate(tab, focus){
 function renderActive(){
   destroyCharts();
   switch (state.ui.tab){
-    case 'captura': renderRecords(); break;
     case 'general': renderGeneral(); break;
     case 'detalle': renderDetail(); break;
     case 'evolucion': renderEvolution(); break;
-    case 'calidad': renderQuality(); break;
-    case 'catalogo': renderCatalog(); break;
   }
   $('#filters').hidden = !ANALYSIS_TABS.includes(state.ui.tab) || !state.records.length;
 }
@@ -1121,17 +932,6 @@ function donutConfig(seg, still){
   return {type: 'doughnut', data: {labels: seg.map(s => s.label), datasets: [{data: seg.map(s => s.value), backgroundColor: seg.map(s => s.color), borderColor: '#fff', borderWidth: 2}]},
     options: {responsive: !still, maintainAspectRatio: false, animation: still ? false : {duration: 250}, cutout: '68%', plugins: {legend: {display: false}, tooltip: {callbacks: {label: c => ` ${c.label}: ${fmt(c.raw)} (${fmtPct(c.raw / totalSeg)})`}}}}};
 }
-/* Genera una imagen estática de un gráfico para el informe impreso. */
-function chartImage(config, w, h){
-  const holder = $('#offscreen'), c = document.createElement('canvas');
-  c.width = w; c.height = h; c.style.width = w + 'px'; c.style.height = h + 'px';
-  holder.appendChild(c);
-  config.options = {...config.options, responsive: false, animation: false, devicePixelRatio: 2};
-  const chart = new Chart(c, config);
-  const url = c.toDataURL('image/png');
-  chart.destroy(); c.remove();
-  return url;
-}
 
 /* ------------------------------ Datos derivados ------------------------------ */
 function sexSplit(rows, code){
@@ -1170,7 +970,7 @@ function indicatorSelect(id, selected, rows){
   return `<select class="control select-ind" id="${id}" aria-label="Indicador">${['Actividad', 'Resultado'].map(t => `<optgroup label="Indicadores de ${t.toLowerCase()}">${IND_LIST.filter(i => i.type === t).map(i => `<option value="${i.code}" ${i.code === selected ? 'selected' : ''}>${i.code} · ${esc(i.name)}${has.has(i.code) ? '' : ' — sin datos'}</option>`).join('')}</optgroup>`).join('')}</select>`;
 }
 function noDataPanel(title){
-  return `<div class="card"><div class="empty"><h3>${esc(title)}</h3><p>Todavía no hay registros. Registra los datos en la pestaña «Captura de datos» o carga una copia JSON descargada anteriormente.</p><div class="btn-row"><button class="btn primary" type="button" data-goto="captura">Ir a Captura de datos</button><button class="btn" type="button" data-action="load">Cargar copia JSON</button></div></div></div>`;
+  return `<div class="card"><div class="empty"><h3>${esc(title)}</h3><p>${esc(state.meta.loadError || 'Todavía no hay datos publicados.')}</p></div></div>`;
 }
 function filterNote(){ const n = activeFilterCount(); return n ? `${plural(n, 'filtro activo', 'filtros activos')}` : 'Sin filtros'; }
 
@@ -1282,645 +1082,30 @@ function renderEvolution(){
   $('#evoInd').addEventListener('change', ev => { state.ui.evoCode = ev.target.value; renderActive(); $('#evoInd')?.focus(); });
 }
 
-/* ----------------------------- Calidad del dato ----------------------------- */
-function describe(r){ return `${r.Cod_Indicador} · ${r.Cod_Subactuación} · ${r.Año} ${r.Periodo}`; }
-function quality(){
-  if (qualityCache) return qualityCache;
-  const issues = [], recs = state.records;
-  groupBy(recs, recKey).forEach(list => { if (list.length > 1) issues.push({sev: 'err', type: 'Registro duplicado', text: `${list.length} registros idénticos (${describe(list[0])}${dimText(list[0]) ? ' · ' + dimText(list[0]) : ''}). Se suman varias veces: elimina los sobrantes.`, ids: list.map(r => r._id)}); });
-  groupBy(recs, baseKey).forEach(list => {
-    if (list.length < 2) return;
-    DIMS.forEach(d => {
-      const none = list.filter(r => r[d.key] === d.none), det = list.filter(r => r[d.key] !== d.none);
-      if (none.length && det.length) issues.push({sev: 'warn', type: 'Total y desglose mezclados', text: `${describe(list[0])}: hay registros sin desglose por ${d.label.toLowerCase()} junto a otros desglosados. Si el registro sin desglose es el total, se contará dos veces.`, ids: list.map(r => r._id)});
-    });
-  });
-  groupBy(recs.filter(r => IND.get(r.Cod_Indicador).aggregation === 'Último valor'), r => `${r.Cod_Indicador}|${r.Cod_Subactuación}`).forEach(list => {
-    const schemes = [...new Set(list.map(breakdownScheme))];
-    if (schemes.length > 1) issues.push({sev: 'warn', type: 'Acumulado con desglose cambiante', text: `${list[0].Cod_Indicador} · ${list[0].Cod_Subactuación}: este indicador acumulado se ha registrado con desgloses distintos (${schemes.join(' / ')}). Cada desglose conserva su último valor, así que un total y sus partes se sumarían. Registra siempre el mismo desglose para la subactuación.`, ids: list.map(r => r._id)});
-  });
-  const plannedGroups = [];
-  groupBy(recs, r => `${r.Cod_Subactuación}|${r.Año}|${r.Periodo}`).forEach(list => {
-    const st = [...new Set(list.map(r => r.Estado_Subactuación))];
-    if (st.length > 1) issues.push({sev: 'warn', type: 'Estado incoherente', text: `La subactuación ${list[0].Cod_Subactuación} tiene estados distintos en ${list[0].Año} ${list[0].Periodo} (${st.join(', ')}).`, ids: list.map(r => r._id)});
-    const planned = list.filter(r => r.Estado_Subactuación === 'Planificada' && r.Valor > 0);
-    if (planned.length) plannedGroups.push(planned);
-  });
-  if (plannedGroups.length) issues.push({sev: 'warn', type: 'Planificada con ejecución', text: `${plural(plannedGroups.length, 'subactuación figura', 'subactuaciones figuran')} como «Planificada» en un periodo en el que ya registran valores mayores que cero: ${plannedGroups.slice(0, 8).map(l => `${l[0].Cod_Subactuación} (${l[0].Año} ${l[0].Periodo})`).join(', ')}${plannedGroups.length > 8 ? '…' : ''}. Revisa si el estado debería ser «En curso» o «Finalizada».`, ids: plannedGroups.flat().map(r => r._id)});
-  groupBy(recs, r => r.Cod_Subactuación).forEach(list => {
-    const byT = [...groupBy(list, timeKey).entries()].sort((a, b) => a[0] - b[0]);
-    let finished = null;
-    byT.forEach(([t, l]) => { const s = subStatus(l); if (s === 'Finalizada' && !finished) finished = l[0]; else if (finished && s !== 'Finalizada') { issues.push({sev: 'info', type: 'Subactuación reabierta', text: `La subactuación ${l[0].Cod_Subactuación} figura «Finalizada» en ${finished.Año} ${finished.Periodo} y vuelve a «${s}» en ${l[0].Año} ${l[0].Periodo}.`, ids: l.map(r => r._id)}); finished = null; } });
-  });
-  const zeros = recs.filter(r => r.Valor === 0);
-  if (zeros.length) issues.push({sev: 'info', type: 'Valores cero', text: `${plural(zeros.length, 'registro tiene', 'registros tienen')} valor 0. Comprueba que no falta el dato.`, ids: zeros.map(r => r._id)});
-  if (state.meta.importNotes.length) issues.push({sev: 'info', type: 'Correcciones al cargar', text: `Al cargar los datos se aplicaron ${plural(state.meta.importNotes.length, 'corrección automática', 'correcciones automáticas')} (por ejemplo: ${esc(state.meta.importNotes[0].text)}).`, ids: [], notes: true});
-  const rank = {err: 0, warn: 1, info: 2};
-  issues.sort((a, b) => rank[a.sev] - rank[b.sev]);
-  return (qualityCache = issues);
-}
-function dimText(r){ return DIMS.filter(d => r[d.key] !== d.none && d.key !== 'Colectivo').map(d => r[d.key]).join(' · '); }
-function renderQuality(){
-  const p = $('#panel-calidad');
-  if (!state.records.length){ p.innerHTML = noDataPanel('Calidad del dato'); return; }
-  const q = quality(), c = s => q.filter(i => i.sev === s).length;
-  const sevLabel = {err: 'Error', warn: 'Advertencia', info: 'Información'};
-  p.innerHTML = `<div class="card"><div class="card-head"><div><h2>Calidad del dato</h2><p>Comprobaciones automáticas sobre todos los registros (sin filtros). Los errores deben corregirse porque alteran los indicadores; las advertencias conviene revisarlas.</p></div></div>
-    <div class="q-summary">${c('err') ? `<span class="q-badge err">${plural(c('err'), 'error', 'errores')}</span>` : ''}${c('warn') ? `<span class="q-badge warn">${plural(c('warn'), 'advertencia')}</span>` : ''}${c('info') ? `<span class="q-badge info">${plural(c('info'), 'aviso informativo', 'avisos informativos')}</span>` : ''}${!c('err') && !c('warn') ? '<span class="q-badge ok">Sin errores ni advertencias</span>' : ''}</div>
-    ${q.length ? `<div class="table-wrap"><table class="table"><thead><tr><th>Gravedad</th><th>Tipo</th><th>Descripción</th><th>Registros</th></tr></thead><tbody>${q.map(i => `<tr><td><span class="sev ${i.sev}">${sevLabel[i.sev]}</span></td><td style="white-space:nowrap;font-weight:600">${esc(i.type)}</td><td>${i.text}</td><td>${i.notes ? '<button type="button" class="btn sm" data-show-notes>Ver detalle</button>' : `<div class="q-list">${i.ids.length === 1 ? `<button type="button" class="btn sm" data-edit-id="${i.ids[0]}">${ICON.edit}Editar</button>` : `<button type="button" class="btn sm" data-show-ids="${i.ids.join(',')}" data-label="${esc(i.type)}">Ver ${plural(i.ids.length, 'registro')}</button>`}</div>`}</td></tr>`).join('')}</tbody></table></div>` : '<div class="empty"><h3>Todo correcto</h3><p>No se han detectado incidencias en los registros.</p></div>'}</div>`;
-}
-function initQuality(){
-  $('#panel-calidad').addEventListener('click', async e => {
-    const b = e.target.closest('[data-edit-id]'); if (b){ await beginEdit(b.dataset.editId); return; }
-    const s = e.target.closest('[data-show-ids]');
-    if (s){
-      const o = state.ui.rec; o.ids = new Set(s.dataset.showIds.split(',')); o.idsLabel = s.dataset.label; o.page = 1;
-      activate('captura'); $('#recordsCard').scrollIntoView({behavior: 'smooth', block: 'start'}); return;
-    }
-    if (e.target.closest('[data-show-notes]')){
-      const n = state.meta.importNotes;
-      const res = await modal({title: 'Correcciones aplicadas al cargar', wide: true, body: `<p>Estas correcciones se aplicaron automáticamente para unificar los datos con el catálogo. No requieren acción.</p><div class="modal-list">${n.slice(0, 300).map(x => `<div>Registro ${x.n}: ${esc(x.text)}</div>`).join('')}</div>`, actions: [{label: 'Marcar como revisadas', value: 'clear'}, {label: 'Cerrar', value: null, kind: 'primary', cancel: true}]});
-      if (res === 'clear'){ state.meta.importNotes = []; qualityCache = null; persist(); renderChrome(); renderQuality(); }
-    }
-  });
-}
-
-/* -------------------------------- Catálogo -------------------------------- */
-function renderCatalog(){
-  const p = $('#panel-catalogo');
-  p.innerHTML = `<div class="card"><div class="card-head"><div><h2>Catálogo del plan</h2><p>Referencia fija del plan aprobado: ejes, ámbitos, actuaciones, indicadores y valores admitidos, que son los que guían los desplegables de la captura. Las subactuaciones no forman parte del catálogo: se definen al registrar los datos. Las localidades, colectivos y responsables añadidos por el usuario se marcan como «añadida» o «añadido».</p></div></div>
-    <div class="section-label">Ejes, ámbitos y actuaciones</div>
-    <div class="table-wrap"><table class="table"><thead><tr><th>Eje</th><th>Ámbito</th><th>Actuación</th><th>Código de sus subactuaciones</th></tr></thead><tbody>${CAT.actions.map(a => `<tr><td>${esc(a.Eje)}</td><td><span class="code">${a.Cod_Ámbito}</span> ${esc(a.Ámbito)}</td><td><span class="code">${a.Cod_Actuación}</span> ${esc(a.Actuación)}</td><td><span class="code">${a.Cod_Actuación}.N</span></td></tr>`).join('')}</tbody></table></div>
-    <div class="section-label">Indicadores</div>
-    <div class="table-wrap"><table class="table"><thead><tr><th>Código</th><th>Indicador</th><th>Tipo</th><th>Unidad</th><th>Regla de cálculo</th><th>Definición</th></tr></thead><tbody>${IND_LIST.map(i => `<tr><td><span class="code">${i.code}</span></td><td style="font-weight:600">${esc(i.name)}</td><td>${i.type}</td><td>${esc(i.unit)}</td><td>${i.aggregation}</td><td style="min-width:320px">${esc(i.definition)}${i.replaces ? `<div class="note">Sustituye a: ${esc(i.replaces)}</div>` : ''}</td></tr>`).join('')}</tbody></table></div>
-    <div class="section-label">Valores admitidos</div>
-    <div class="table-wrap"><table class="table"><thead><tr><th>Campo</th><th>Valores</th></tr></thead><tbody>
-      ${DIMS.map(d => `<tr><td style="font-weight:600;white-space:nowrap">${esc(d.label)}</td><td><div class="values"><span class="dim none-val" data-tip="Valor que indica que el registro no está desglosado en esta dimensión">${esc(d.none)}</span>${dimValues(d.key).slice(1).map(v => `<span class="dim">${esc(v)}${state.ext[d.key]?.includes(v) ? ' · añadida' : ''}</span>`).join('')}</div></td></tr>`).join('')}
-      <tr><td style="font-weight:600">Responsable</td><td><div class="values">${responsables().map(v => `<span class="dim">${esc(v)}${state.ext.Responsable.includes(v) ? ' · añadido' : ''}</span>`).join('')}</div></td></tr>
-      <tr><td style="font-weight:600">Tipo de intervención</td><td><div class="values">${INTERVENTIONS.map(v => `<span class="dim">${esc(v)}</span>`).join('')}</div></td></tr>
-      <tr><td style="font-weight:600">Estado</td><td><div class="values">${STATES.map(tag).join(' ')}</div></td></tr>
-      <tr><td style="font-weight:600">Año y periodo</td><td>${YEARS.join(', ')} · S1 (enero–junio) y S2 (julio–diciembre)</td></tr>
-    </tbody></table></div></div>`;
-}
-
-/* ------------------------------ Captura ------------------------------ */
-const NEW = '__new__';
-function fieldHtml(label, name, control, {req = true, span = '', help = ''} = {}){
-  return `<div class="field ${span}" data-field="${name}"><label for="f-${name}">${esc(label)}${req ? '<span class="req" aria-hidden="true">*</span>' : ''}</label>${control}${help ? `<div class="field-help" id="h-${name}">${help}</div>` : ''}<div class="field-error" id="e-${name}" role="alert"></div></div>`;
-}
-const opt = (v, l, sel) => `<option value="${esc(v)}" ${sel ? 'selected' : ''}>${esc(l)}</option>`;
-function selectHtml(name, optionsHtml){ return `<select class="control" id="f-${name}" name="${name}" aria-describedby="e-${name}">${optionsHtml}</select>`; }
-function actionOptions(){
-  return '<option value="">Selecciona la actuación…</option>' + AMBITOS.map(b => `<optgroup label="${esc(`${EJES.find(e => e.code === b.eje).name} · ${b.code} ${b.name}`)}">${CAT.actions.filter(a => a.Cod_Ámbito === b.code).map(a => opt(a.Cod_Actuación, `${a.Cod_Actuación} · ${a.Actuación}`)).join('')}</optgroup>`).join('');
-}
-function subOptions(act){
-  if (!act) return '<option value="">Elige primero la actuación</option>';
-  const subs = subsOfAction(act);
-  return `<option value="">${subs.length ? 'Selecciona la subactuación…' : 'Aún no hay subactuaciones: crea una nueva'}</option>` + subs.map(s => opt(s.code, `${s.code} · ${s.name}`)).join('') + opt(NEW, '+ Nueva subactuación…');
-}
-const listOptions = (list, ph) => `<option value="">${esc(ph)}</option>` + list.map(v => opt(v, v)).join('');
-function indicatorOptions(){
-  return '<option value="">Selecciona el indicador…</option>' + ['Actividad', 'Resultado'].map(t => `<optgroup label="Indicadores de ${t.toLowerCase()}">${IND_LIST.filter(i => i.type === t).map(i => opt(i.code, `${i.code} · ${i.name}`)).join('')}</optgroup>`).join('');
-}
-function lineHtml(values = {}){
-  const lid = uid();
-  const dims = DIMS.map(d => {
-    const v = values[d.key] ?? (d.key === 'Colectivo' ? '' : d.none);
-    const list = dimValues(d.key);
-    const options = (d.key === 'Colectivo' ? '<option value="">Selecciona…</option>' : '') + list.map(x => opt(x, x, x === v)) + (d.extensible ? opt(NEW, `+ Otra ${d.key === 'Localidad' ? 'localidad' : 'categoría'}…`) : '');
-    return `<div class="field" data-field="${d.key}"><label>${esc(d.label)}${d.key === 'Colectivo' ? '<span class="req" aria-hidden="true">*</span>' : ''}</label><select class="control ${v ? '' : 'placeholder'}" data-dim="${d.key}" aria-label="${esc(d.label)}">${options}</select>${d.extensible ? `<input class="control" data-dim-new="${d.key}" placeholder="Escribe la nueva ${d.key === 'Localidad' ? 'localidad' : 'categoría'}" aria-label="Nueva ${esc(d.label.toLowerCase())}" hidden style="margin-top:6px">` : ''}<div class="field-error"></div></div>`;
-  }).join('');
-  return `<div class="line line-grid" data-line="${lid}">${dims}<div class="field val-field" data-field="Valor"><label>Valor<span class="req" aria-hidden="true">*</span></label><input class="control val" data-valor inputmode="numeric" autocomplete="off" placeholder="0" aria-label="Valor" value="${esc(values.Valor ?? '')}"><div class="field-error"></div></div><button type="button" class="icon-btn del" data-remove-line aria-label="Eliminar esta línea" data-tip="Eliminar esta línea">${ICON.trash}</button></div>`;
-}
-function buildCapture(){
-  const p = $('#panel-captura');
-  const guideOpen = state.ui.guideOpen ?? !state.records.length;
-  p.innerHTML = `<div class="card" id="formCard">
-    <div class="card-head"><div><h2 id="formTitle">Nuevo registro</h2><p>Registra los datos de ejecución de una subactuación. Los campos con <span class="req">*</span> son obligatorios. Cada línea de la sección 4 genera un registro.</p></div><div class="card-tools"><button type="button" class="btn sm quiet" id="toggleGuide" aria-expanded="${guideOpen}">${guideOpen ? 'Ocultar ayuda' : '¿Cómo se rellena?'}</button></div></div>
-    <div class="guide" id="guide" ${guideOpen ? '' : 'hidden'}>
-      <div><b><span class="step">1</span>Actuación</b>Elige la actuación; el eje y el ámbito se completan solos. Después elige la subactuación o crea una nueva.</div>
-      <div><b><span class="step">2</span>Periodo</b>Indica año, semestre (S1: enero–junio, S2: julio–diciembre), estado, responsable y tipo de intervención.</div>
-      <div><b><span class="step">3</span>Indicador</b>Elige qué se mide. Verás su definición y su unidad para comprobar que es el adecuado.</div>
-      <div><b><span class="step">4</span>Valores</b>Una línea si el dato no está desglosado. Varias líneas si lo desglosas (por ejemplo, Mujeres y Hombres): nunca mezcles el total con sus partes.</div>
-    </div>
-    <div class="edit-banner" id="editBanner" hidden></div>
-    <form id="captureForm" novalidate autocomplete="off">
-      <fieldset class="fieldset"><legend class="legend-title"><span class="step">1</span>Actuación del plan</legend>
-        <div class="form-grid">
-          ${fieldHtml('Actuación', 'act', selectHtml('act', actionOptions()), {span: 'span-2'})}
-          ${fieldHtml('Subactuación', 'sub', selectHtml('sub', subOptions('')), {span: 'span-2'})}
-          <div class="span-4 derived" id="derived"></div>
-          <div class="span-4 inline-new" id="newSubBox" hidden><div class="form-grid">
-            ${fieldHtml('Código de la nueva subactuación', 'newSubCode', '<input class="control code" id="f-newSubCode" name="newSubCode" aria-describedby="e-newSubCode h-newSubCode">', {help: 'Se propone el siguiente código libre. Formato: código de la actuación + punto + número.'})}
-            ${fieldHtml('Nombre de la nueva subactuación', 'newSubName', '<input class="control" id="f-newSubName" name="newSubName" maxlength="160" aria-describedby="e-newSubName">', {span: 'span-2'})}
-            <div class="field" style="align-self:end"><button type="button" class="btn sm quiet" id="cancelNewSub">Elegir una existente</button></div>
-          </div></div>
-        </div>
-      </fieldset>
-      <fieldset class="fieldset"><legend class="legend-title"><span class="step">2</span>Periodo y ejecución</legend>
-        <div class="form-grid">
-          ${fieldHtml('Año', 'year', selectHtml('year', listOptions(YEARS.map(String), 'Selecciona…')))}
-          ${fieldHtml('Periodo', 'period', selectHtml('period', '<option value="">Selecciona…</option>' + opt('S1', 'S1 · enero–junio') + opt('S2', 'S2 · julio–diciembre')))}
-          ${fieldHtml('Estado de la subactuación', 'state', selectHtml('state', listOptions(STATES, 'Selecciona…')), {help: ''})}
-          ${fieldHtml('Tipo de intervención', 'intervention', selectHtml('intervention', listOptions(INTERVENTIONS, 'Selecciona…')))}
-          ${fieldHtml('Responsable', 'resp', selectHtml('resp', '') + '<input class="control" id="f-respNew" name="respNew" placeholder="Nombre del nuevo responsable" maxlength="80" hidden style="margin-top:6px" aria-label="Nuevo responsable">', {span: 'span-2'})}
-          ${fieldHtml('Territorio', 'territory', selectHtml('territory', TERRITORIES.map(t => opt(t, t, true)).join('')))}
-        </div>
-      </fieldset>
-      <fieldset class="fieldset"><legend class="legend-title"><span class="step">3</span>Indicador</legend>
-        <div class="form-grid">
-          ${fieldHtml('Indicador', 'indicator', selectHtml('indicator', indicatorOptions()), {span: 'span-2'})}
-          <div class="span-2"><div class="label" style="font-size:12px;font-weight:600;color:var(--ink-2);margin-bottom:4px">Definición</div><div class="ind-info" id="indInfo"><span class="note">Selecciona un indicador para ver su definición, unidad y regla de cálculo.</span></div></div>
-        </div>
-      </fieldset>
-      <fieldset class="fieldset"><legend class="legend-title"><span class="step">4</span>Valores y desglose <small>· una línea por cada combinación de desglose</small></legend>
-        <p class="lines-help">Si el dato no está desglosado, deja «No aplica», «Todos» y «Sin desglose local». Para desglosar, añade una línea por categoría: todas las líneas deben estar desglosadas en la misma dimensión.</p>
-        <div class="lines" id="lines"><div class="lines-head line-grid">${DIMS.map(d => `<span>${esc(d.label)}${d.key === 'Colectivo' ? ' *' : ''}</span>`).join('')}<span id="valueHead">Valor *</span><span></span></div></div>
-        <div class="lines-foot"><button type="button" class="btn sm" id="addLine">${ICON.plus}Añadir línea de desglose</button><div class="lines-total" id="linesTotal"></div></div>
-        <div class="field-error" id="e-lines" role="alert" style="margin-top:8px"></div>
-      </fieldset>
-      <fieldset class="fieldset"><legend class="legend-title"><span class="step" style="background:var(--subtle)">5</span>Observaciones <small>· opcional</small></legend>
-        ${fieldHtml('Observaciones', 'obs', '<textarea class="control" id="f-obs" name="obs" maxlength="500" placeholder="Aclaraciones sobre el dato, fuente, incidencias…"></textarea>', {req: false})}
-      </fieldset>
-      <div class="form-foot"><div class="form-msg" id="formMsg" aria-live="polite"></div><div class="form-buttons"><button type="button" class="btn quiet" id="cancelEdit" hidden>Cancelar edición</button><button type="button" class="btn" id="resetForm">Limpiar formulario</button><button type="submit" class="btn primary" id="saveBtn">${ICON.save}<span>Guardar registro</span></button></div></div>
-    </form>
-  </div>
-  <div class="card" id="recordsCard">
-    <div class="card-head"><div><h2>Registros introducidos</h2><p>Fuente de datos del cuadro. Usa el lápiz para corregir un registro o la papelera para eliminarlo.</p></div><div class="card-tools"><button type="button" class="btn sm danger" id="clearAll">${ICON.trash}Vaciar todos los registros</button></div></div>
-    <div class="records-tools">
-      <div class="search">${ICON.search}<input class="control" type="search" id="recSearch" placeholder="Buscar por código, subactuación, indicador, localidad…" aria-label="Buscar registros"></div>
-      <select class="control" id="recInd" aria-label="Filtrar por indicador"><option value="">Todos los indicadores</option>${IND_LIST.map(i => opt(i.code, `${i.code} · ${i.short}`)).join('')}</select>
-      <select class="control" id="recYear" aria-label="Filtrar por año"><option value="">Todos los años</option>${YEARS.map(y => opt(y, y)).join('')}</select>
-      <select class="control" id="recSort" aria-label="Ordenar"><option value="plan">Orden del plan</option><option value="recent">Últimos añadidos primero</option><option value="value">Mayor valor primero</option></select>
-      <select class="control" id="recSize" aria-label="Registros por página"><option value="10">10 por página</option><option value="25" selected>25 por página</option><option value="50">50 por página</option><option value="100">100 por página</option></select>
-    </div>
-    <div id="recFilter"></div><div class="table-wrap"><table class="table records"><thead><tr><th>Subactuación</th><th>Indicador</th><th>Periodo</th><th>Desglose</th><th class="num">Valor</th><th>Estado</th><th>Responsable</th><th class="num"><span class="sr-only">Acciones</span></th></tr></thead><tbody id="recBody"></tbody></table></div>
-    <div class="pager" id="pager"></div>
-  </div>`;
-  fillResponsables('');
-  resetForm(true);
-}
-function fillResponsables(selected){
-  const sel = $('#f-resp');
-  sel.innerHTML = listOptions(responsables(), 'Selecciona…') + opt(NEW, '+ Otro responsable…');
-  sel.value = selected || '';
-}
-const F = name => $(`#f-${name}`);
-function setPlaceholderClass(sel){ if (sel && sel.tagName === 'SELECT') sel.classList.toggle('placeholder', sel.value === ''); }
-function updateDerived(){
-  const act = ACTIONS.get(F('act').value), box = $('#derived');
-  box.innerHTML = act ? `<span>Se registrará en:</span><span class="crumb"><b>${esc(act.Eje)}</b></span><span>›</span><span class="crumb"><b>${act.Cod_Ámbito}</b> ${esc(act.Ámbito)}</span><span>›</span><span class="crumb"><b>${act.Cod_Actuación}</b> ${esc(act.Actuación)}</span>` : '';
-}
-function updateIndInfo(){
-  const i = IND.get(F('indicator').value), box = $('#indInfo');
-  box.classList.toggle('result', i?.type === 'Resultado');
-  box.innerHTML = i ? `<p>${esc(i.definition)}</p><dl><div><dt>Tipo:</dt><dd>${i.type}</dd></div><div><dt>Unidad:</dt><dd>${esc(i.unit)}</dd></div><div><dt>Cálculo:</dt><dd>${i.aggregation === 'Último valor' ? 'último valor (dato acumulado al cierre)' : 'se suma'}</dd></div></dl>` : '<span class="note">Selecciona un indicador para ver su definición, unidad y regla de cálculo.</span>';
-  $('#valueHead').textContent = i ? `Valor (${i.unit}) *` : 'Valor *';
-  $$('#lines [data-valor]').forEach(inp => inp.placeholder = i ? `0 ${i.unit}` : '0');
-  updateTotal();
-}
-function updateTotal(){
-  const vals = $$('#lines [data-valor]').map(i => parseValor(i.value)).filter(n => Number.isInteger(n) && n >= 0);
-  const i = IND.get(F('indicator').value), lines = $$('#lines .line').length;
-  $('#linesTotal').innerHTML = lines > 1 ? `Total de las ${lines} líneas: <b>${fmt(vals.reduce((s, n) => s + n, 0))}</b> ${i ? esc(i.unit) : ''}` : '';
-  $$('#lines [data-remove-line]').forEach(b => b.disabled = lines <= 1);
-}
-function onActionChange(){
-  const act = F('act').value;
-  F('sub').innerHTML = subOptions(act); F('sub').value = '';
-  $('#newSubBox').hidden = true;
-  updateDerived();
-  if (act){
-    const prev = state.records.filter(r => r.Cod_Actuación === act);
-    const most = key => { const m = groupBy(prev, r => r[key]); let best = '', n = 0; m.forEach((l, k) => { if (l.length > n){ n = l.length; best = k; } }); return best; };
-    if (!F('resp').value && prev.length){ F('resp').value = most('Responsable'); F('resp').dispatchEvent(new Event('change', {bubbles: true})); }
-    if (!F('intervention').value && prev.length) F('intervention').value = most('Tipo_Intervención');
-  }
-  $$('#captureForm select').forEach(setPlaceholderClass);
-}
-function onSubChange(){
-  const v = F('sub').value, box = $('#newSubBox');
-  box.hidden = v !== NEW;
-  if (v === NEW){ F('newSubCode').value = nextSubCode(F('act').value); F('newSubName').value = ''; F('newSubName').focus(); }
-  suggestState();
-}
-/* Propone el estado ya registrado para la misma subactuación y periodo. */
-function suggestState(){
-  const sub = F('sub').value, y = Number(F('year').value), p = F('period').value, help = $('#h-state');
-  const others = state.records.filter(r => r._id !== state.ui.editingId && r.Cod_Subactuación === sub && r.Año === y && r.Periodo === p);
-  const st = [...new Set(others.map(r => r.Estado_Subactuación))];
-  if (st.length === 1){
-    if (!F('state').value) { F('state').value = st[0]; setPlaceholderClass(F('state')); }
-    if (help) help.textContent = `Estado registrado para este periodo: ${st[0]}.`;
-  } else if (help) help.textContent = '';
-  if (!help && st.length === 1){ const h = document.createElement('div'); h.className = 'field-help'; h.id = 'h-state'; h.textContent = `Estado registrado para este periodo: ${st[0]}.`; $('[data-field="state"] .field-error').before(h); }
-}
-function addLine(values){
-  $('#lines').insertAdjacentHTML('beforeend', lineHtml(values));
-  updateIndInfo();
-}
-function resetForm(full){
-  const form = $('#captureForm');
-  clearErrors();
-  if (full){
-    ['act', 'year', 'period', 'state', 'intervention', 'resp', 'indicator'].forEach(n => F(n).value = '');
-    F('sub').innerHTML = subOptions(''); F('obs').value = ''; F('respNew').hidden = true; F('respNew').value = '';
-    $('#newSubBox').hidden = true; F('territory').value = 'Navarra';
-  }
-  $$('#lines .line').forEach(l => l.remove());
-  addLine();
-  updateDerived(); updateIndInfo(); suggestState();
-  $$('select', form).forEach(setPlaceholderClass);
-  state.ui.dirty = false;
-}
-function clearErrors(){
-  $$('#captureForm .field.invalid').forEach(f => f.classList.remove('invalid'));
-  $('#e-lines').textContent = ''; $('#e-lines').style.display = 'none';
-  setMsg('');
-}
-function setMsg(text, kind){ const m = $('#formMsg'); m.textContent = text; m.className = 'form-msg ' + (kind || ''); }
-function fieldError(name, msg){ const f = $(`#captureForm [data-field="${name}"]`); if (!f) return; f.classList.add('invalid'); $('.field-error', f).textContent = msg; }
-function lineError(line, key, msg){ const f = $(`[data-field="${key}"]`, line); f.classList.add('invalid'); $('.field-error', f).textContent = msg; }
-function linesError(msg){ const e = $('#e-lines'); e.textContent = msg; e.style.display = 'block'; }
-
-/* Valida el formulario y devuelve los registros listos para guardar. */
-function collectForm(){
-  clearErrors();
-  let ok = true;
-  const err = (n, m) => { fieldError(n, m); ok = false; };
-  const act = ACTIONS.get(F('act').value);
-  if (!act) err('act', 'Selecciona la actuación');
-  let sub = null, newSub = null;
-  const sv = F('sub').value;
-  if (act){
-    if (!sv) err('sub', 'Selecciona la subactuación o crea una nueva');
-    else if (sv === NEW){
-      const code = str(F('newSubCode').value), name = str(F('newSubName').value);
-      if (!subPattern(act.Cod_Actuación).test(code)) err('newSubCode', `El código debe tener el formato ${act.Cod_Actuación}.N (por ejemplo, ${nextSubCode(act.Cod_Actuación)})`);
-      else if (subsMap().has(code)) err('newSubCode', `El código ${code} ya existe: elígelo en la lista de subactuaciones`);
-      if (!name) err('newSubName', 'Escribe el nombre de la subactuación');
-      else if (subsOfAction(act.Cod_Actuación).some(s => fold(s.name) === fold(name))) err('newSubName', 'Ya existe una subactuación con este nombre en la actuación');
-      if (ok) { newSub = {code, name, act: act.Cod_Actuación}; sub = newSub; }
-    } else sub = subsMap().get(sv);
-  }
-  const year = Number(F('year').value), period = F('period').value, st = F('state').value, inter = F('intervention').value, terr = F('territory').value, ind = IND.get(F('indicator').value);
-  if (!YEARS.includes(year)) err('year', 'Selecciona el año');
-  if (!PERIODS.includes(period)) err('period', 'Selecciona el periodo');
-  if (!STATES.includes(st)) err('state', 'Selecciona el estado');
-  if (!INTERVENTIONS.includes(inter)) err('intervention', 'Selecciona el tipo de intervención');
-  if (!TERRITORIES.includes(terr)) err('territory', 'Selecciona el territorio');
-  if (!ind) err('indicator', 'Selecciona el indicador');
-  let resp = F('resp').value, newResp = null;
-  if (!resp) err('resp', 'Selecciona el responsable');
-  else if (resp === NEW){
-    const v = str(F('respNew').value);
-    if (!v) err('resp', 'Escribe el nombre del responsable');
-    else { const c = canonical(v, responsables()); if (c) resp = c; else { resp = v; newResp = v; } }
-  }
-  const newDims = {Localidad: [], Colectivo: []};
-  const lines = $$('#lines .line').map((line, ix) => {
-    const vals = {};
-    DIMS.forEach(d => {
-      const sel = $(`[data-dim="${d.key}"]`, line); let v = sel.value;
-      if (!v){ lineError(line, d.key, `Selecciona ${d.label.toLowerCase()}`); ok = false; }
-      else if (v === NEW){
-        const nv = str($(`[data-dim-new="${d.key}"]`, line).value);
-        if (!nv){ lineError(line, d.key, 'Escribe el nuevo valor'); ok = false; }
-        else { const c = canonical(nv, dimValues(d.key)); if (c) v = c; else { v = nv; if (!newDims[d.key].includes(nv)) newDims[d.key].push(nv); } }
-      }
-      vals[d.key] = v;
-    });
-    const raw = $('[data-valor]', line).value, n = parseValor(raw), ve = valorError(n, raw);
-    if (ve){ lineError(line, 'Valor', ve); ok = false; } else vals.Valor = n;
-    return {line, ix, vals};
-  });
-  if (ok && lines.length > 1){
-    const seen = new Map();
-    lines.forEach(l => { const k = DIMS.map(d => l.vals[d.key]).join('|'); if (seen.has(k)){ linesError(`La línea ${l.ix + 1} repite la misma combinación de desglose que la línea ${seen.get(k) + 1}.`); ok = false; } else seen.set(k, l.ix); });
-    if (ok) DIMS.forEach(d => {
-      const none = lines.filter(l => isNone(d.key, l.vals[d.key])).length;
-      if (ok && none && none < lines.length){ linesError(`Mezcla de total y desglose en «${d.label}»: si desglosas por ${d.label.toLowerCase()}, todas las líneas deben indicar una categoría (no «${d.none}»). Registra el total o sus partes, nunca ambos.`); ok = false; }
-    });
-  }
-  if (!ok){
-    setMsg('Revisa los campos marcados en rojo.', 'error');
-    const first = $('#captureForm .field.invalid .control, #captureForm .field.invalid select, #e-lines[style*="block"]');
-    if (first){ first.scrollIntoView({behavior: 'smooth', block: 'center'}); if (first.focus) first.focus({preventScroll: true}); }
-    return null;
-  }
-  const records = lines.map(l => {
-    const r = {Cod_Eje: act.Cod_Eje, Eje: act.Eje, Cod_Ámbito: act.Cod_Ámbito, Ámbito: act.Ámbito, Cod_Actuación: act.Cod_Actuación, Actuación: act.Actuación,
-      Cod_Subactuación: sub.code, Subactuación: sub.name, Responsable: resp, Tipo_Intervención: inter, Año: year, Periodo: period, Estado_Subactuación: st,
-      Cod_Indicador: ind.code, Indicador: ind.name, Tipo_Indicador: ind.type, Unidad: ind.unit, Valor: l.vals.Valor, Territorio: terr, Observaciones: str(F('obs').value)};
-    DIMS.forEach(d => r[d.key] = l.vals[d.key]);
-    const out = {}; FIELDS.forEach(k => out[k] = r[k]); return out;
-  });
-  return {records, newSub, newResp, newDims};
-}
-async function saveForm(e){
-  e.preventDefault();
-  const res = collectForm(); if (!res) return;
-  const editing = state.ui.editingId, others = state.records.filter(r => r._id !== editing);
-  const keys = new Map(others.map(r => [recKey(r), r]));
-  const dup = res.records.map((r, ix) => ({ix, r: keys.get(recKey(r))})).filter(x => x.r);
-  if (dup.length){
-    setMsg(`Ya existe un registro con la misma subactuación, indicador, periodo y desglose${res.records.length > 1 ? ` (línea ${dup[0].ix + 1})` : ''}. Corrige ese registro en lugar de crear otro.`, 'error');
-    const m = $('#formMsg'); m.insertAdjacentHTML('beforeend', ` <button type="button" class="link" data-edit-id="${dup[0].r._id}">Editar el registro existente</button>`);
-    return;
-  }
-  const warnings = [];
-  const sample = res.records[0];
-  const sameBase = others.filter(r => baseKey(r) === baseKey(sample));
-  if (sameBase.length){
-    DIMS.forEach(d => {
-      const mineNone = res.records.some(r => isNone(d.key, r[d.key])), mineDet = res.records.some(r => !isNone(d.key, r[d.key]));
-      const theirNone = sameBase.some(r => isNone(d.key, r[d.key])), theirDet = sameBase.some(r => !isNone(d.key, r[d.key]));
-      if ((mineNone && theirDet) || (mineDet && theirNone)) warnings.push(`Ya hay ${plural(sameBase.length, 'registro')} de este indicador, subactuación y periodo con distinto desglose por <b>${esc(d.label.toLowerCase())}</b>. Si uno es el total del otro, el valor se contará dos veces.`);
-    });
-  }
-  if (IND.get(sample.Cod_Indicador).aggregation === 'Último valor'){
-    const mine = breakdownScheme(sample);
-    const otherSchemes = [...new Set(others.filter(r => r.Cod_Indicador === sample.Cod_Indicador && r.Cod_Subactuación === sample.Cod_Subactuación && baseKey(r) !== baseKey(sample)).map(breakdownScheme))].filter(s => s !== mine);
-    if (otherSchemes.length) warnings.push(`Este indicador es acumulado y en otros periodos esta subactuación está registrada con otro desglose (<b>${esc(otherSchemes.join(' / '))}</b>; ahora: <b>${esc(mine)}</b>). Cada desglose conserva su último valor, así que un total y sus partes se sumarían.`);
-  }
-  const stateConflict = others.filter(r => r.Cod_Subactuación === sample.Cod_Subactuación && r.Año === sample.Año && r.Periodo === sample.Periodo && r.Estado_Subactuación !== sample.Estado_Subactuación);
-  if (stateConflict.length) warnings.push(`Hay ${plural(stateConflict.length, 'registro')} de esta subactuación en ${sample.Año} ${sample.Periodo} con otro estado. Para mantener la coherencia, <b>se actualizarán a «${esc(sample.Estado_Subactuación)}»</b>.`);
-  if (warnings.length){
-    const go = await modal({title: 'Revisa antes de guardar', icon: 'warn', body: `<ul>${warnings.map(w => `<li>${w}</li>`).join('')}</ul>`, actions: [{label: 'Volver al formulario', value: false, cancel: true}, {label: 'Guardar igualmente', value: true, kind: 'primary'}]});
-    if (!go) return;
-  }
-  if (res.newSub) state.ext.subs.push(res.newSub);
-  if (res.newResp) state.ext.Responsable.push(res.newResp);
-  Object.entries(res.newDims).forEach(([k, l]) => l.forEach(v => state.ext[k].push(v)));
-  sortExt(state.ext); subCache = null;
-  stateConflict.forEach(r => r.Estado_Subactuación = sample.Estado_Subactuación);
-  const recs = res.records.map(r => ({...r, _id: uid()}));
-  let msg;
-  if (editing){
-    const ix = state.records.findIndex(r => r._id === editing);
-    recs[0]._id = editing;
-    state.records.splice(ix, 1, ...recs);
-    msg = 'Cambios guardados.';
-  } else {
-    state.records.push(...recs);
-    msg = `${recs.length === 1 ? 'Registro guardado' : `${recs.length} registros guardados`}. Puedes introducir el siguiente: se mantienen la actuación, el periodo y el indicador.`;
-  }
-  const keep = {act: F('act').value, sub: recs[0].Cod_Subactuación, resp: recs[0].Responsable};
-  const wasEditing = !!editing;
-  exitEdit();
-  commit(recs.length + stateConflict.length);
-  if (res.newSub || res.newResp || res.newDims.Localidad.length || res.newDims.Colectivo.length){
-    F('sub').innerHTML = subOptions(keep.act); fillResponsables(keep.resp);
-  }
-  if (wasEditing) resetForm(true);
-  else { F('sub').value = keep.sub; $('#newSubBox').hidden = true; resetForm(false); }
-  setMsg(msg, 'ok');
-  toast(msg.split('.')[0] + '.', 'ok', 3000);
-  state.ui.rec.page = 1;
-  renderRecords(recs.map(r => r._id));
-}
-async function confirmDiscard(){
-  if (!state.ui.dirty) return true;
-  return modal({title: 'Descartar los datos del formulario', icon: 'warn', body: '<p>El formulario tiene datos sin guardar. Si continúas se perderán.</p>', actions: [{label: 'Seguir con el formulario', value: false, cancel: true}, {label: 'Descartar y continuar', value: true, kind: 'primary'}]});
-}
-async function beginEdit(id){
-  const r = state.records.find(x => x._id === id); if (!r) return;
-  if (state.ui.editingId !== id && !(await confirmDiscard())) return;
-  if (state.ui.tab !== 'captura') activate('captura');
-  state.ui.editingId = id;
-  resetForm(true);
-  F('act').value = r.Cod_Actuación; F('sub').innerHTML = subOptions(r.Cod_Actuación); F('sub').value = r.Cod_Subactuación;
-  F('year').value = String(r.Año); F('period').value = r.Periodo; F('state').value = r.Estado_Subactuación; F('intervention').value = r.Tipo_Intervención;
-  F('resp').value = r.Responsable; F('territory').value = r.Territorio; F('indicator').value = r.Cod_Indicador; F('obs').value = r.Observaciones || '';
-  $$('#lines .line').forEach(l => l.remove()); addLine(r);
-  updateDerived(); updateIndInfo(); suggestState();
-  $$('#captureForm select').forEach(setPlaceholderClass);
-  $('#formTitle').textContent = 'Editar registro';
-  const b = $('#editBanner'); b.hidden = false;
-  b.innerHTML = `<span>Estás editando <strong>${esc(describe(r))}</strong>${dimText(r) ? ' · ' + esc(dimText(r)) : ''}. Al guardar se sustituirá ese registro.</span><button type="button" class="btn sm" data-cancel-edit>Cancelar edición</button>`;
-  $('#saveBtn span').textContent = 'Guardar cambios';
-  $('#cancelEdit').hidden = false; $('#addLine').hidden = true;
-  state.ui.dirty = false;
-  renderRecords();
-  $('#formCard').scrollIntoView({behavior: 'smooth', block: 'start'});
-  setTimeout(() => F('act').focus({preventScroll: true}), 350);
-}
-function exitEdit(){
-  state.ui.editingId = null;
-  $('#formTitle').textContent = 'Nuevo registro';
-  $('#editBanner').hidden = true;
-  $('#saveBtn span').textContent = 'Guardar registro';
-  $('#cancelEdit').hidden = true; $('#addLine').hidden = false;
-}
-async function deleteRecord(id){
-  const r = state.records.find(x => x._id === id); if (!r) return;
-  const ok = await modal({title: 'Eliminar registro', icon: 'danger', body: `<p>Se eliminará este registro:</p><div class="modal-list"><b>${esc(r.Cod_Subactuación)} · ${esc(r.Subactuación)}</b><br>${esc(r.Cod_Indicador)} · ${esc(r.Indicador)}<br>${r.Año} ${r.Periodo} · ${fmt(r.Valor)} ${esc(r.Unidad)}${dimText(r) ? ' · ' + esc(dimText(r)) : ''}</div><p style="margin-top:10px">Esta acción no se puede deshacer salvo que cargues una copia anterior.</p>`, actions: [{label: 'Cancelar', value: false, cancel: true}, {label: 'Eliminar registro', value: true, kind: 'danger-solid'}]});
-  if (!ok) return;
-  const ix = state.records.findIndex(x => x._id === id);
-  if (ix < 0) return;
-  state.records.splice(ix, 1);
-  if (state.ui.editingId === id){ exitEdit(); resetForm(true); }
-  commit(1);
-  toast('Registro eliminado.', 'ok', 3000);
-}
-async function clearAll(){
-  const n = state.records.length;
-  if (!n){ toast('No hay registros que vaciar.', 'warn'); return; }
-  const ok = await modal({title: 'Vaciar todos los registros', icon: 'danger', body: `<p>Se eliminarán los <b>${fmt(n)} registros</b> del cuadro y las subactuaciones definidas en ellos.</p><p>Antes se descargará automáticamente una copia de seguridad con todos ellos, para que puedas recuperarlos con «Cargar copia».</p>`, actions: [{label: 'Cancelar', value: false, cancel: true}, {label: 'Descargar copia y vaciar', value: true, kind: 'danger-solid'}]});
-  if (!ok) return;
-  exportJson('II_PICD_copia_antes_de_vaciar');
-  state.records = []; state.ext.subs = []; state.meta.source = ''; state.meta.importNotes = [];
-  exitEdit(); resetForm(true);
-  commit(0); state.meta.pendingChanges = 0; persist(); renderChrome();
-  toast(`Se han vaciado ${fmt(n)} registros. La copia previa se ha descargado.`, 'ok', 7000);
-}
-function recordMatches(r, q){
-  if (!q) return true;
-  return fold([r.Cod_Subactuación, r.Subactuación, r.Cod_Actuación, r.Actuación, r.Cod_Indicador, r.Indicador, r.Responsable, r.Año, r.Periodo, r.Estado_Subactuación, r.Observaciones, ...DIMS.map(d => r[d.key])].join(' ')).includes(q);
-}
-function renderRecords(highlight){
-  const body = $('#recBody'); if (!body) return;
-  const o = state.ui.rec, q = fold(o.search);
-  let list = state.records.map((r, ix) => ({r, ix})).filter(({r}) => (!o.ids || o.ids.has(r._id)) && recordMatches(r, q) && (!o.ind || r.Cod_Indicador === o.ind) && (!o.year || String(r.Año) === o.year));
-  $('#recFilter').innerHTML = o.ids ? `<div class="rec-filter">${ICON.warn}<span>Mostrando los registros de la incidencia «${esc(o.idsLabel)}».</span><button type="button" class="btn sm" data-clear-ids>Ver todos los registros</button></div>` : '';
-  if (o.sort === 'plan') list.sort((a, b) => sortCode(a.r.Cod_Subactuación, b.r.Cod_Subactuación) || timeKey(a.r) - timeKey(b.r) || IND.get(a.r.Cod_Indicador).order - IND.get(b.r.Cod_Indicador).order || a.ix - b.ix);
-  else if (o.sort === 'recent') list.sort((a, b) => b.ix - a.ix);
-  else list.sort((a, b) => b.r.Valor - a.r.Valor);
-  const pages = Math.max(1, Math.ceil(list.length / o.size));
-  if (highlight && highlight.length){ const pos = list.findIndex(x => x.r._id === highlight[0]); if (pos >= 0) o.page = Math.floor(pos / o.size) + 1; }
-  o.page = Math.min(Math.max(1, o.page), pages);
-  const start = (o.page - 1) * o.size, slice = list.slice(start, start + o.size);
-  const hl = new Set(highlight || []);
-  body.innerHTML = slice.map(({r}) => {
-    const dims = DIMS.filter(d => d.key !== 'Colectivo' && r[d.key] !== d.none).map(d => `<span class="dim" title="${esc(d.label)}">${esc(r[d.key])}</span>`).join('');
-    return `<tr class="${r._id === state.ui.editingId ? 'editing' : ''}" ${hl.has(r._id) ? 'style="animation:toast-in .6s"' : ''}><td data-label="Subactuación"><div class="cell-main"><span class="code">${esc(r.Cod_Subactuación)}</span> ${esc(r.Subactuación)}</div><div class="cell-sub">${esc(r.Cod_Actuación)} · ${esc(r.Actuación)}</div></td><td data-label="Indicador"><div class="cell-main"><span class="code">${r.Cod_Indicador}</span> ${esc(IND.get(r.Cod_Indicador).short)}</div><div class="cell-sub">${esc(r.Unidad)}</div></td><td data-label="Periodo" style="white-space:nowrap">${r.Año} · ${r.Periodo}</td><td data-label="Desglose"><div class="dims">${dims || '<span class="dim total">Sin desglose</span>'}</div><div class="cell-sub">${esc(r.Colectivo)}</div></td><td class="num" data-label="Valor"><b>${fmt(r.Valor)}</b></td><td data-label="Estado">${tag(r.Estado_Subactuación)}</td><td data-label="Responsable">${esc(r.Responsable)}</td><td class="acts"><button type="button" class="icon-btn" data-edit-id="${r._id}" aria-label="Editar registro ${esc(describe(r))}" data-tip="Editar">${ICON.edit}</button><button type="button" class="icon-btn del" data-del-id="${r._id}" aria-label="Eliminar registro ${esc(describe(r))}" data-tip="Eliminar">${ICON.trash}</button></td></tr>`;
-  }).join('') || `<tr><td colspan="8"><div class="empty" style="border:0;background:none">${state.records.length ? 'Ningún registro coincide con la búsqueda.' : 'Aún no hay registros. Rellena el formulario superior para crear el primero o carga una copia JSON.'}</div></td></tr>`;
-  const filtered = list.length !== state.records.length;
-  $('#pager').innerHTML = list.length ? `<span>Mostrando ${fmt(start + 1)}–${fmt(Math.min(start + o.size, list.length))} de ${fmt(list.length)} registros${filtered ? ` (de ${fmt(state.records.length)} en total)` : ''}</span><span class="pager-ctrl"><button type="button" class="btn sm" data-page="prev" ${o.page <= 1 ? 'disabled' : ''}>‹ Anterior</button><span>Página ${o.page} de ${pages}</span><button type="button" class="btn sm" data-page="next" ${o.page >= pages ? 'disabled' : ''}>Siguiente ›</button></span>` : '';
-  $('#clearAll').disabled = !state.records.length;
-}
-function initCapture(){
-  const p = $('#panel-captura');
-  p.addEventListener('submit', e => { if (e.target.id === 'captureForm') saveForm(e); });
-  p.addEventListener('change', e => {
-    const t = e.target;
-    if (t.closest('#captureForm')) state.ui.dirty = true;
-    setPlaceholderClass(t);
-    switch (t.id){
-      case 'f-act': onActionChange(); break;
-      case 'f-sub': onSubChange(); break;
-      case 'f-year': case 'f-period': suggestState(); break;
-      case 'f-indicator': updateIndInfo(); break;
-      case 'f-resp': F('respNew').hidden = t.value !== NEW; if (t.value === NEW) F('respNew').focus(); break;
-      case 'recInd': state.ui.rec.ind = t.value; state.ui.rec.page = 1; renderRecords(); break;
-      case 'recYear': state.ui.rec.year = t.value; state.ui.rec.page = 1; renderRecords(); break;
-      case 'recSort': state.ui.rec.sort = t.value; state.ui.rec.page = 1; renderRecords(); break;
-      case 'recSize': state.ui.rec.size = Number(t.value); state.ui.rec.page = 1; renderRecords(); break;
-    }
-    if (t.matches('[data-dim]')){
-      const inp = t.parentElement.querySelector('[data-dim-new]');
-      if (inp){ inp.hidden = t.value !== NEW; if (t.value === NEW) inp.focus(); }
-    }
-    const f = t.closest('.field'); if (f) f.classList.remove('invalid');
-  });
-  p.addEventListener('input', e => {
-    const t = e.target;
-    if (t.closest('#captureForm')){ state.ui.dirty = true; const f = t.closest('.field'); if (f) f.classList.remove('invalid'); }
-    if (t.matches('[data-valor]')) updateTotal();
-    if (t.id === 'recSearch'){ state.ui.rec.search = t.value; state.ui.rec.page = 1; renderRecords(); }
-  });
-  p.addEventListener('click', async e => {
-    const t = e.target;
-    if (t.closest('#addLine')){ const last = $$('#lines .line').pop(); const vals = {}; if (last) DIMS.forEach(d => { const v = $(`[data-dim="${d.key}"]`, last).value; vals[d.key] = v === NEW ? '' : v; }); addLine(vals); $$('#lines .line').pop().querySelector('select').focus(); state.ui.dirty = true; return; }
-    const rm = t.closest('[data-remove-line]'); if (rm && !rm.disabled){ rm.closest('.line').remove(); updateTotal(); state.ui.dirty = true; return; }
-    if (t.closest('#resetForm')){ if (await confirmDiscard()){ if (state.ui.editingId) exitEdit(); resetForm(true); renderRecords(); } return; }
-    if (t.closest('#cancelEdit, [data-cancel-edit]')){ exitEdit(); resetForm(true); renderRecords(); return; }
-    if (t.closest('#cancelNewSub')){ F('sub').value = ''; onSubChange(); setPlaceholderClass(F('sub')); return; }
-    if (t.closest('#toggleGuide')){ const g = $('#guide'); g.hidden = !g.hidden; state.ui.guideOpen = !g.hidden; t.closest('#toggleGuide').textContent = g.hidden ? '¿Cómo se rellena?' : 'Ocultar ayuda'; t.closest('#toggleGuide').setAttribute('aria-expanded', !g.hidden); return; }
-    const ed = t.closest('[data-edit-id]'); if (ed){ await beginEdit(ed.dataset.editId); return; }
-    const del = t.closest('[data-del-id]'); if (del){ await deleteRecord(del.dataset.delId); return; }
-    const pg = t.closest('[data-page]'); if (pg){ state.ui.rec.page += pg.dataset.page === 'next' ? 1 : -1; renderRecords(); $('#recordsCard').scrollIntoView({block: 'start'}); return; }
-    if (t.closest('[data-clear-ids]')){ state.ui.rec.ids = null; state.ui.rec.page = 1; renderRecords(); return; }
-    if (t.closest('#clearAll')){ await clearAll(); }
-  });
-}
-
-/* --------------------------- Carga de copias --------------------------- */
-async function importFile(file){
-  if (!file) return;
-  if (!/\.json$/i.test(file.name)){ await modal({title: 'Archivo no admitido', icon: 'warn', body: `<p>«${esc(file.name)}» no es una copia JSON del cuadro. Selecciona un archivo con extensión <b>.json</b> descargado con «Descargar copia».</p>`, actions: [{label: 'Entendido', value: null, kind: 'primary', cancel: true}]}); return; }
+/* --------------------------- Datos publicados --------------------------- */
+/* La versión pública muestra la copia JSON exportada desde el cuadro interno y publicada
+   junto a este HTML (datos.json). Se valida con las mismas reglas que al cargar una copia. */
+const DATA_URL = 'datos.json';
+async function loadPublished(){
   let payload;
-  try { payload = JSON.parse(await file.text()); }
-  catch (e) { await modal({title: 'No se puede leer el archivo', icon: 'danger', body: `<p>«${esc(file.name)}» no tiene un formato JSON válido o está dañado.</p>`, actions: [{label: 'Cerrar', value: null, kind: 'primary', cancel: true}]}); return; }
-  const rows = Array.isArray(payload) ? payload : Array.isArray(payload?.data) ? payload.data : Array.isArray(payload?.records) ? payload.records : null;
-  if (!rows){ await modal({title: 'Copia no compatible', icon: 'danger', body: `<p>«${esc(file.name)}» no contiene una lista de registros del cuadro de mando.</p>`, actions: [{label: 'Cerrar', value: null, kind: 'primary', cancel: true}]}); return; }
-  const res = processRows(rows, payload.extensions || payload.ext || null);
-  const dups = [...groupBy(res.records, recKey).values()].filter(l => l.length > 1).length;
-  const cur = state.records.length;
-  if (!res.records.length){
-    await modal({title: 'Ningún registro válido', icon: 'danger', wide: true, body: `<p>Ninguno de los ${fmt(rows.length)} registros de «${esc(file.name)}» supera la validación. No se ha cambiado nada.</p>${invalidList(res.invalid)}`, actions: [{label: 'Cerrar', value: null, kind: 'primary', cancel: true}]});
-    return;
+  try {
+    const resp = await fetch(DATA_URL, {cache: 'no-cache'});
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    payload = await resp.json();
+  } catch (e) {
+    console.error(e);
+    return location.protocol === 'file:'
+      ? 'No se han podido cargar los datos: este cuadro debe abrirse desde un servidor web, con el archivo datos.json en la misma carpeta.'
+      : 'No se han podido cargar los datos del cuadro. Inténtalo de nuevo más tarde.';
   }
-  const body = `<p>Archivo: <b>${esc(file.name)}</b>${payload.exportedAt ? ` · descargado el ${fmtDateTime(new Date(payload.exportedAt))}` : ''}</p><ul>
-    <li><b>${fmt(res.records.length)}</b> registros válidos se cargarán.</li>
-    ${res.invalid.length ? `<li style="color:var(--red-700)"><b>${fmt(res.invalid.length)}</b> registros con errores se descartarán (detalle abajo).</li>` : ''}
-    ${res.notes.length ? `<li>${plural(res.notes.length, 'corrección automática', 'correcciones automáticas')} para unificar los datos con el catálogo (consúltalas después en «Calidad del dato»).</li>` : ''}
-    ${dups ? `<li style="color:var(--amber)">${plural(dups, 'grupo', 'grupos')} de registros duplicados: revísalos en «Calidad del dato».</li>` : ''}
-    ${cur ? `<li><b>Sustituirá a los ${fmt(cur)} registros actuales.</b> ${state.meta.pendingChanges ? 'Como tienen cambios sin copia, antes se descargará automáticamente una copia de seguridad.' : 'Ya tienes copia de ellos.'}</li>` : ''}
-  </ul>${res.invalid.length ? invalidList(res.invalid) : ''}`;
-  const ok = await modal({title: 'Cargar copia de seguridad', icon: res.invalid.length ? 'warn' : 'info', wide: true, body, actions: [{label: 'Cancelar', value: false, cancel: true}, {label: cur ? 'Sustituir los datos actuales' : 'Cargar registros', value: true, kind: 'primary'}]});
-  if (!ok) return;
-  if (cur && state.meta.pendingChanges) exportJson('II_PICD_copia_antes_de_cargar');
+  const rows = Array.isArray(payload) ? payload : Array.isArray(payload?.data) ? payload.data : Array.isArray(payload?.records) ? payload.records : null;
+  if (!rows) return 'El archivo de datos no tiene el formato esperado.';
+  const res = processRows(rows, payload.extensions || payload.ext || null);
   state.records = res.records; state.ext = res.ext;
-  state.meta.source = file.name; state.meta.importNotes = res.notes.slice(0, 300);
-  state.meta.backupAt = new Date().toISOString(); state.meta.pendingChanges = 0;
-  state.ui.editingId = null; state.ui.rec.page = 1; state.ui.rec.ids = null; state.ui.expanded.clear();
-  FILTER_DEFS.forEach(d => state.ui.filters[d.key] = []);
-  subCache = null; qualityCache = null;
-  persist();
-  buildCapture();
-  commit(res.invalid.length ? 1 : 0);
-  toast(`${fmt(res.records.length)} registros cargados desde «${file.name}».`, 'ok', 6000);
-}
-function invalidList(list){
-  return `<div class="modal-list">${list.slice(0, 100).map(x => `<div><b>Registro ${x.n}:</b> ${esc(x.errors.join('; '))}</div>`).join('')}${list.length > 100 ? `<div>… y ${list.length - 100} más.</div>` : ''}</div>`;
-}
-function initFileIO(){
-  const input = $('#fileInput');
-  const pick = async () => { if (state.ui.editingId || state.ui.dirty){ if (!(await confirmDiscard())) return; } input.value = ''; input.click(); };
-  $('#btnLoad').addEventListener('click', pick);
-  input.addEventListener('change', () => { const f = input.files[0]; input.value = ''; importFile(f); });
-  $('#btnExport').addEventListener('click', () => exportJson());
-  document.addEventListener('click', e => {
-    if (e.target.closest('#pillBackup, #bannerExport')) exportJson();
-    if (e.target.closest('[data-action="load"]')) pick();
-    const g = e.target.closest('[data-goto]'); if (g) activate(g.dataset.goto);
-  });
-  let depth = 0; const overlay = $('#dropOverlay');
-  const hasFiles = e => e.dataTransfer && Array.from(e.dataTransfer.types || []).includes('Files');
-  window.addEventListener('dragenter', e => { if (!hasFiles(e)) return; e.preventDefault(); depth++; overlay.hidden = false; });
-  window.addEventListener('dragover', e => { if (hasFiles(e)) e.preventDefault(); });
-  window.addEventListener('dragleave', e => { if (!hasFiles(e)) return; depth = Math.max(0, depth - 1); if (!depth) overlay.hidden = true; });
-  window.addEventListener('drop', e => { if (!hasFiles(e)) return; e.preventDefault(); depth = 0; overlay.hidden = true; importFile(e.dataTransfer.files[0]); });
-}
-
-/* ------------------------------ Informe PDF ------------------------------ */
-function filtersText(){
-  const parts = FILTER_DEFS.filter(d => state.ui.filters[d.key].length).map(d => `${d.label}: ${state.ui.filters[d.key].map(v => optionLabel(d.key, v)).join(', ')}`);
-  return parts.length ? parts.join(' · ') : 'Ninguno (todos los registros)';
-}
-function buildReport(){
-  const rows = filteredRows(), now = new Date(), logo = $('#brandLogo').src;
-  const head = `<div class="pr-head"><img src="${logo}" alt=""><span>Informe de seguimiento del II PICD · generado el ${fmtDateTime(now)}</span></div>`;
-  const kpiBox = i => { const v = total(rows, i.code); return `<div class="pr-kpi ${i.type === 'Resultado' ? 'result' : ''}"><div class="n">${i.code} · ${esc(i.name)}</div><div class="v">${fmt(v)}${v === null ? '' : `<small>${esc(i.unit)}</small>`}</div><div class="r">${i.aggregation === 'Último valor' ? 'Último valor por subactuación y desglose' : 'Suma'}</div></div>`; };
-  const pce = total(rows, 'PCE'), ppr = total(rows, 'PPR');
-  const locs = new Set(rows.map(r => r.Localidad).filter(v => v !== DIM.Localidad.none));
-  const sexRows = filteredRows('Sexo');
-  const sexes = IND_LIST.filter(i => i.unit === 'personas').map(i => sexSplit(sexRows, i.code)).filter(Boolean);
-  // Detalle
-  const dcode = state.ui.detailCode && IND.has(state.ui.detailCode) ? state.ui.detailCode : firstWithData(rows), dind = IND.get(dcode);
-  const dcharts = DIMS.map(d => ({d, b: dimBreakdown(rows, dcode, d.key)})).filter(x => x.b.labels.length).map(({d, b}) => `<div class="pr-chart"><h3>${esc(d.label)}</h3><img src="${chartImage(hbarConfig(b.labels, b.values, COLORS[dind.type], dind.unit, true), 520, hbarHeight(b.labels))}" alt="${esc(d.label)}">${b.noneSum ? `<div class="pr-note">Sin desglose: ${fmt(b.noneSum)} ${esc(dind.unit)} (${fmtPct(b.noneSum / b.total)}).</div>` : ''}</div>`).join('');
-  // Evolución
-  const ecode = state.ui.evoCode && IND.has(state.ui.evoCode) ? state.ui.evoCode : firstWithData(rows), eind = IND.get(ecode), eslots = evolutionSlots(rows, ecode);
-  const estock = eind.aggregation === 'Último valor';
-  const evoRows = estock ? [['Total al cierre', s => s.stock]] : [['Valor del periodo', s => s.val], ['Acumulado', s => s.acc]];
-  const evoTable = `<table class="pr-table" style="margin-top:6px"><thead><tr><th></th>${eslots.map(s => `<th class="num">${s.y}<br>${s.p}</th>`).join('')}</tr></thead><tbody>${evoRows.map(([l, fn]) => `<tr><td><b>${l}</b></td>${eslots.map(s => `<td class="num">${fmt(fn(s))}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
-  const evoImg = eslots.some(s => s.rows.length) ? `<div class="pr-chart full"><h3>${esc(eind.code)} · ${esc(eind.name)} (${esc(eind.unit)})</h3><img src="${chartImage(evoConfig(eind, eslots, true), 1000, 330)}" alt="Evolución">${evoTable}</div>` : '<p>Sin datos del indicador seleccionado.</p>';
-  const yearCell = (code, y) => { const ind = IND.get(code), list = rows.filter(r => r.Cod_Indicador === code && r.Año === y); if (ind.aggregation === 'Último valor'){ const e = effRows(rows.filter(r => r.Cod_Indicador === code && timeKey(r) <= tk(y, 'S2')), code); return e.length && rows.some(r => r.Cod_Indicador === code && r.Año <= y) ? fmt(sumV(e)) : '—'; } return list.length ? fmt(sumV(list)) : '—'; };
-  const matrix = `<table class="pr-table"><thead><tr><th>Indicador</th><th>Unidad</th>${YEARS.map(y => `<th class="num">${y}</th>`).join('')}<th class="num">Total del plan</th></tr></thead><tbody>${IND_LIST.map(i => `<tr><td>${i.code} · ${esc(i.name)}</td><td>${esc(i.unit)}</td>${YEARS.map(y => `<td class="num">${yearCell(i.code, y)}</td>`).join('')}<td class="num"><b>${fmt(total(rows, i.code))}</b></td></tr>`).join('')}</tbody></table><div class="pr-note">Para los indicadores acumulados (CEN, AUL) cada año muestra el total existente al cierre del año y el total del plan es el último valor disponible.</div>`;
-  const sorted = rows.slice().sort((a, b) => sortCode(a.Cod_Subactuación, b.Cod_Subactuación) || timeKey(a) - timeKey(b) || IND.get(a.Cod_Indicador).order - IND.get(b.Cod_Indicador).order);
-  const recTable = `<table class="pr-table"><thead><tr><th>Subactuación</th><th>Indicador</th><th>Periodo</th><th>Desglose</th><th>Colectivo</th><th class="num">Valor</th><th>Unidad</th><th>Estado</th><th>Responsable</th></tr></thead><tbody>${sorted.map(r => `<tr><td><span class="code">${esc(r.Cod_Subactuación)}</span> ${esc(r.Subactuación)}</td><td>${r.Cod_Indicador}</td><td style="white-space:nowrap">${r.Año} ${r.Periodo}</td><td>${esc(dimText(r)) || 'Sin desglose'}</td><td>${esc(r.Colectivo)}</td><td class="num">${fmt(r.Valor)}</td><td>${esc(r.Unidad)}</td><td>${esc(r.Estado_Subactuación)}</td><td>${esc(r.Responsable)}</td></tr>`).join('')}</tbody></table>`;
-  $('#printReport').innerHTML = `
-  <section class="pr-cover"><div><img src="${logo}" alt="Gobierno de Navarra · Agenda 2030"></div><div><h1>Informe de seguimiento de la ejecución del II Plan de Inclusión y Capacitación Digital de Navarra</h1><div class="pr-sub">Extracción del cuadro de mando de seguimiento</div></div>
-    <div class="pr-meta"><div><b>Fecha de generación:</b> ${fmtDateTime(now)}</div><div><b>Registros incluidos:</b> ${fmt(rows.length)} de ${fmt(state.records.length)}</div><div><b>Filtros aplicados:</b> ${esc(filtersText())}</div>${state.meta.source ? `<div><b>Origen de los datos:</b> ${esc(state.meta.source)}</div>` : ''}</div></section>
-  <section class="pr-page">${head}<h1 class="pr-h1">Índice</h1><ol class="pr-toc"><li>Datos generales por indicadores</li><li>Datos detallados: ${esc(dind.name)}</li><li>Evolución temporal</li><li>Anexo I. Estructura del plan</li><li>Anexo II. Registros</li></ol>
-    <h2 class="pr-h2">Notas metodológicas</h2><ul class="pr-intro"><li>Los indicadores se agregan sumando los registros, salvo los indicadores acumulados (centros y aulas), que toman el último dato disponible de cada subactuación y desglose (por ejemplo, de cada localidad).</li><li>Los desgloses solo incluyen los registros desglosados en cada dimensión; la parte sin desglose se indica en cada gráfico.</li><li>Todos los apartados reflejan los filtros indicados en la portada.</li></ul></section>
-  <section class="pr-page">${head}<h1 class="pr-h1">1. Datos generales por indicadores</h1><p class="pr-intro">Valores agregados de los indicadores del plan para la selección del informe.</p>
-    <h2 class="pr-h2">Indicadores de actividad</h2><div class="pr-kpis">${IND_LIST.filter(i => i.type === 'Actividad').map(kpiBox).join('')}</div>
-    <h2 class="pr-h2">Indicadores de resultado</h2><div class="pr-kpis">${IND_LIST.filter(i => i.type === 'Resultado').map(kpiBox).join('')}</div>
-    <h2 class="pr-h2">Indicadores calculados</h2><div class="pr-kpis"><div class="pr-kpi calc"><div class="n">Tasa de certificación (PCE / PPR)</div><div class="v">${ppr ? fmtPct((pce || 0) / ppr) : '—'}</div><div class="r">${ppr ? `${fmt(pce || 0)} certificadas de ${fmt(ppr)} presentadas` : 'Sin personas presentadas'}</div></div><div class="pr-kpi calc"><div class="n">Localidades alcanzadas</div><div class="v">${locs.size ? fmt(locs.size) : '—'}${locs.size ? '<small>localidades</small>' : ''}</div><div class="r">${esc([...locs].sort().join(', '))}</div></div></div>
-    ${sexes.length ? `<h2 class="pr-h2">Distribución por sexo</h2><table class="pr-table"><thead><tr><th>Indicador</th><th class="num">Mujeres</th><th class="num">Hombres</th><th class="num">% mujeres</th><th class="num">Parte desglosada por sexo</th></tr></thead><tbody>${sexes.map(s => `<tr><td>${s.code} · ${esc(IND.get(s.code).name)}</td><td class="num">${fmt(s.w)}</td><td class="num">${fmt(s.m)}</td><td class="num">${fmtPct(s.w / (s.w + s.m))}</td><td class="num">${fmtPct(s.coverage)}</td></tr>`).join('')}</tbody></table>` : ''}</section>
-  <section class="pr-page">${head}<h1 class="pr-h1">2. Datos detallados: ${esc(dind.code)} · ${esc(dind.name)}</h1><p class="pr-intro">Reparto del indicador por las dimensiones de desglose disponibles. Total: <b>${fmt(total(rows, dcode))} ${esc(dind.unit)}</b>. Para analizar otro indicador, selecciónalo en «Visión detallada» antes de generar el informe.</p>${dcharts ? `<div class="pr-charts">${dcharts}</div>` : '<p>El indicador no tiene registros desglosados para la selección.</p>'}</section>
-  <section class="pr-page">${head}<h1 class="pr-h1">3. Evolución temporal</h1><p class="pr-intro">${estock ? 'Total existente al cierre de cada periodo.' : 'Valor registrado en cada periodo (barras) y acumulado (línea).'} Indicador seleccionado en la pestaña «Evolución».</p>${evoImg}
-    <h2 class="pr-h2">Resumen anual de todos los indicadores</h2>${matrix}</section>
-  <section class="pr-page pr-landscape">${head}<h1 class="pr-h1">Anexo I. Estructura del plan</h1><p class="pr-intro">Ejes, ámbitos, actuaciones y subactuaciones con datos en la selección, con su estado y el valor de cada indicador (${IND_LIST.map(i => `${i.code}: ${esc(i.short.toLowerCase())}`).join('; ')}).</p>${structureHtml(rows, 'data')}</section>
-  <section class="pr-page pr-landscape">${head}<h1 class="pr-h1">Anexo II. Registros</h1><p class="pr-intro">${fmt(sorted.length)} registros incluidos en el informe, en el orden del plan.</p>${recTable}</section>`;
-}
-let printPrepared = false, prevTitle = document.title;
-function preparePrint(){
-  buildReport(); printPrepared = true;
-  prevTitle = document.title; document.title = `Informe_II_PICD_${stamp()}`;
-}
-function initPrint(){
-  $('#btnPrint').addEventListener('click', async () => {
-    if (!state.records.length){ await modal({title: 'No hay datos para el informe', icon: 'info', body: '<p>Registra datos o carga una copia antes de generar el informe.</p>', actions: [{label: 'Entendido', value: null, kind: 'primary', cancel: true}]}); return; }
-    const btn = $('#btnPrint'); btn.disabled = true;
-    try { preparePrint(); } catch (e) { console.error(e); toast('No se pudo preparar el informe.', 'err'); btn.disabled = false; return; }
-    setTimeout(() => { window.print(); btn.disabled = false; }, 60);
-    toast('En la ventana de impresión elige «Guardar como PDF» como destino.', 'ok', 7000);
-  });
-  window.addEventListener('beforeprint', () => { if (!printPrepared && state.records.length) preparePrint(); });
-  window.addEventListener('afterprint', () => { printPrepared = false; document.title = prevTitle; $('#printReport').innerHTML = ''; });
+  state.meta.dataDate = payload.exportedAt ? new Date(payload.exportedAt) : null;
+  if (res.invalid.length) console.warn(`${res.invalid.length} registros no superan la validación y no se muestran.`, res.invalid);
+  subCache = null;
+  return state.records.length ? '' : 'Todavía no hay datos publicados.';
 }
 
 /* ------------------------------ Arranque ------------------------------ */
@@ -1933,19 +1118,16 @@ function initTabs(){
     if (n !== null){ e.preventDefault(); activate(tabs[n].dataset.tab, true); }
   });
 }
-function init(){
-  state.storageOk = testStorage();
+async function init(){
   setupCharts();
-  loadStored();
-  initTooltips(); initTabs(); initFilters(); initGeneral(); initQuality(); initCapture(); initFileIO(); initPrint();
-  buildCapture();
-  renderChrome();
-  activate('captura');
-  window.addEventListener('beforeunload', e => { if (state.ui.dirty){ e.preventDefault(); e.returnValue = ''; } });
-  window.addEventListener('storage', e => { if (e.key === STORAGE_KEY) toast('Los datos se han modificado en otra pestaña del navegador. Recarga esta página para ver la versión más reciente y evitar sobrescribirla.', 'warn', 12000); });
+  initTooltips(); initTabs(); initFilters(); initGeneral();
+  state.meta.loadError = 'Cargando datos…';
+  renderChrome(); activate('general');
+  state.meta.loadError = await loadPublished();
+  renderChrome(); activate('general');
 }
 /* API mínima para diagnóstico desde la consola del navegador. */
-window.PICD = {version: VERSION, state, total, effRows, quality, prepareReport: preparePrint};
+window.PICD = {version: VERSION, state, total, effRows};
 init();
 })();
 
